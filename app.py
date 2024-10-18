@@ -1,8 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
+app.secret_key = "Secret key"
 
-app.route('/')
+@app.route('/')
 def index():
-    return('Hello World!')
+    return render_template('index.html')
+
+
+
+
 
