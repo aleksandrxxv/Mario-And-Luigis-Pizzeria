@@ -1,0 +1,9 @@
+.btn-size {
+    width: 100%;
+    padding: 20px;
+    font-size: 18px;
+}
+.selected {
+    background-color: #0d6efd;
+    color: white;
+}
