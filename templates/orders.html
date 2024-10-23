@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+</head>
+<body>
+    {% for order in orders %}
+    <h3>Order ID: {{ order.id }}</h3>
+    <h2>{{order.order_place}}</h2>
+    <h4>Items:</h4>
+    <ul>
+        {% for item in order.cart_items %}
+            <li>{{ item['quantity'] }} x {{ item['pizza_size'] }} {{item['pizza_name']}}</li>
+            <li>{{item['topping']}}</li>
+        {% endfor %}
+    </ul>
+
+    {% endfor %}
+</body>
+</html>

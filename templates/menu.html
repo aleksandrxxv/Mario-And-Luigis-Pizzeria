@@ -78,7 +78,7 @@
         function decrementQuantity(index) {
             var quantityInput = document.getElementById('quantity' + index);
             var currentValue = parseInt(quantityInput.value);
-            if (currentValue > 1) { // Ensure quantity doesn't go below 1
+            if (currentValue > 1) {
                 quantityInput.value = currentValue - 1;
             }
         }

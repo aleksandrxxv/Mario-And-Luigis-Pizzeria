@@ -28,15 +28,19 @@ class MenuItem(db.Model):
 
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    OrderTime = db.Column(db.String(100))
-    OrderContents = db.Column(db.Text)
-    OrderPlace = db.Column(db.String(100))
-    OrderStatus = db.Column(db.String(100))
+    order_placer = db.Column(db.String(100))
+    order_time = db.Column(db.String(100))
+    order_contents = db.Column(db.Text)
+    order_place = db.Column(db.String(100))
+    order_status = db.Column(db.String(100))
 
 
 with app.app_context():
     db.create_all()
 
+@app.route('/dev')
+def dev():
+    return render_template('dev.html')
 
 @app.route('/')
 def index():
@@ -84,4 +88,53 @@ def view_cart():
 def clear_cart():
     session.pop('cart', None)
     return redirect(url_for('index'))
+
+@app.route('/checkout', methods = ['GET','POST'])
+def checkout():
+    cart = session.get('cart', [])
+
+    if cart:
+        cart_json = json.dumps(cart)
+
+        new_order = Orders(order_placer = "Admin", order_time = datetime.datetime.now(), order_contents=cart_json, order_place="Pickup", order_status="Received")
+
+        db.session.add(new_order)
+        db.session.commit()
+
+        session.pop('cart', None)
+
+        return "Order Placed"
+    else:
+        return "Your Cart is empty"
+
+@app.route('/view_orders')
+def view_orders():
+    orders = Orders.query.all()
+
+    orders_with_cart = []
+    for order in orders:
+        order_cart = json.loads(order.order_contents)
+        orders_with_cart.append({
+            'id': order.id,
+            'order_time': order.order_time,
+            'cart_items': order_cart,
+            'order_place': order.order_place   
+        })
+    return render_template('orders.html', orders=orders_with_cart)
+
+@app.route('/track_order/<order_placer>')
+def track_order(order_placer):
+    orders = Orders.query.filter_by(order_placer = order_placer).all()
+
+    orders_with_cart = []
+    for order in orders:
+        order_cart = json.loads(order.order_contents)
+        orders_with_cart.append({
+            'id': order.id,
+            'order_time': order.order_time,
+            'cart_items': order_cart,
+            'order_place': order.order_place
+        })
+    return render_template('orders.html', orders=orders_with_cart)
+
 
