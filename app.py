@@ -118,7 +118,8 @@ def view_orders():
             'id': order.id,
             'order_time': order.order_time,
             'cart_items': order_cart,
-            'order_place': order.order_place   
+            'order_place': order.order_place,
+            'order_status': order.order_status   
         })
     return render_template('orders.html', orders=orders_with_cart)
 
@@ -133,7 +134,8 @@ def track_order(order_placer):
             'id': order.id,
             'order_time': order.order_time,
             'cart_items': order_cart,
-            'order_place': order.order_place
+            'order_place': order.order_place,
+            'order_status': order.order_status
         })
     return render_template('orders.html', orders=orders_with_cart)
 

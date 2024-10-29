@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Orders</title>
 </head>
 <body>
-    {% for order in orders %}
-    <h3>Order ID: {{ order.id }}</h3>
-    <h2>{{order.order_place}}</h2>
-    <h4>Items:</h4>
-    <ul>
-        {% for item in order.cart_items %}
-            <li>{{ item['quantity'] }} x {{ item['pizza_size'] }} {{item['pizza_name']}}</li>
-            <li>{{item['topping']}}</li>
+    <div class="grid-container">
+        {% for order in orders %}
+        <div class="order-card">
+            <h3>Order ID: {{ order.id }}</h3>
+            <h2>{{order.order_place}}</h2>
+            <h4>Items:</h4>
+            <ul>
+                {% for item in order.cart_items %}
+                    <li>{{ item['quantity'] }} x {{ item['pizza_size'] }} {{item['pizza_name']}}</li>
+                    <li>{{item['topping']}}</li>
+                {% endfor %}
+            </ul>
+            {% if order.order_status == "Received"%}
+            <a href="">Put In oven</a>
+            {% else %}
+            <a href="">Ready</a>
+            {% endif %}
+        </div>
         {% endfor %}
-    </ul>
-
-    {% endfor %}
+    </div>
 </body>
 </html>
