@@ -19,3 +19,44 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0, 0.1);
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar1 {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar-brand {
+    float: left;
+    color: #fff;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navbar-navi {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+.navbar-navi li {
+    display: inline;
+}
+
+.navbar-navi li a {
+    color: #fff;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.navbar-navi li a:hover {
+    background-color: #575757;
+}
