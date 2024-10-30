@@ -92,11 +92,14 @@ def clear_cart():
 @app.route('/checkout', methods = ['GET','POST'])
 def checkout():
     cart = session.get('cart', [])
+    name = request.form.get("name")
+    order_place = request.form.get("place").capitalize()
+
 
     if cart:
         cart_json = json.dumps(cart)
 
-        new_order = Orders(order_placer = "Admin", order_time = datetime.datetime.now(), order_contents=cart_json, order_place="Pickup", order_status="Received")
+        new_order = Orders(order_placer = name, order_time = datetime.datetime.now(), order_contents=cart_json, order_place=order_place, order_status="Received")
 
         db.session.add(new_order)
         db.session.commit()
