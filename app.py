@@ -122,7 +122,8 @@ def view_orders():
             'order_time': order.order_time,
             'cart_items': order_cart,
             'order_place': order.order_place,
-            'order_status': order.order_status   
+            'order_status': order.order_status,
+            'order_placer': order.order_placer  
         })
     return render_template('orders.html', orders=orders_with_cart)
 
