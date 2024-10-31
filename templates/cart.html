@@ -12,9 +12,13 @@
             <img src="{{item.pizza_image}}" alt="Product image">
             <div class="flex-item">
                 <h2>{{ item.pizza_name }}</h2>
+                {% if item.topping != "None"%}
                 <p>{{ item.topping }}</p>
+                {% endif %}
             </div>  
+            {% if item.pizza_size != "None"%}
             <h2>{{ item.pizza_size }}</h2>
+            {% endif %}
             <h2>{{ item.quantity }} x</h2>
             <h2>{{ item.pizza_price * item.quantity}} €</h2>
         </div>
