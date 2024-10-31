@@ -73,6 +73,40 @@
     display: block;
 
 }
+.modal-body {
+    font-weight: 100 !important;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+/* Style the label to look like a button */
+label.custom-radio {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #ff6347; /* Default border color */
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.2s, border-color 0.2s;
+    color: #ff6347; /* Default text color */
+}
+
+/* Change background and text color on hover */
+label.custom-radio:hover {
+    background-color: #e7f1ff; /* Light blue on hover */
+}
+
+/* Change styles when the radio button is checked */
+input[type="radio"]:checked + label.custom-radio {
+    background-color: #ff6347; /* Selected background color */
+    color: white; /* Text color when selected */
+    border-color: #ff6347; /* Darker border when selected */
+}
+
+
+
 .menu-item:hover {
     transform: scale(1.05);
 }
@@ -159,7 +193,11 @@ body {
 
 body {
     background-color: #f8f8f8;
+<<<<<<< HEAD
+    height: 100vh; /* Full height */
+=======
     height: 100vh;
+>>>>>>> 3b450de8e7c4eaddbd1b5649f774a1d2ae6b9a24
 }
 
 
@@ -224,9 +262,9 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 100%;
+    height: 100vh;
 }
 
 .container1 {
-    height: 100%;
+    height: 87%;
 }
