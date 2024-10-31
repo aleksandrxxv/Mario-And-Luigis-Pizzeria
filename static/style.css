@@ -109,6 +109,9 @@ body {
     font-size: 50px;
     font-weight: 600;
 }
+.navbar-brand:hover {
+    color: #ff6347;
+}    
 
 .navbar-navi {
     list-style-type: none;
@@ -135,7 +138,7 @@ body {
     width: 7vh;
 }
 .navbar-navi li a:hover {
-    color: violet;
+    color: #ff6347;
 }
 
 
