@@ -1,3 +1,9 @@
+* {
+    font-family: "Holtwood One SC", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
 .btn-size {
     width: 100%;
     padding: 20px;
@@ -70,31 +76,39 @@
 .menu-item:hover {
     transform: scale(1.05);
 }
+.menu-item h1 {
+    font-size: medium;
+    color: #404040;
+}
+
 .menu-item p {
-    font-size: small;
+    font-size: x-small;
     font-weight: 600;
-    color: #575757;
+    color: #747474
 }
 
 body {
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
     margin: 0;
     padding: 0;
 }
 
 .navbar1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #C6BEB2;
     overflow: hidden;
     padding: 15px 20px; /* Increased padding for height */
-
+    letter-spacing: 2px;
 }
 
 .navbar-brand {
     float: left;
     color: #F7F7F7;
-    padding: 14px 20px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 50px;
+    font-weight: 600;
 }
 
 .navbar-navi {
@@ -134,7 +148,7 @@ body {
 
 /* General Body Styling */
 body {
-    font-family: Arial, sans-serif; /* Adjust the font as needed */
+    /* font-family: Arial, sans-serif; Adjust the font as needed */
     background-color: #f8f8f8; /* Optional: Background color */
     height: 100vh; /* Full height */
 }
@@ -152,7 +166,7 @@ body {
 
 /* Title Style */
 .welcome-container h1 {
-    font-size: 45px; /* Adjust the title size */
+    font-size: 40px; /* Adjust the title size */
     margin-bottom: 10px; /* Space between title and text */
     color: #f7f7f7; /* Title color */
     text-align: center;
@@ -164,6 +178,7 @@ body {
     padding: 15px 30px;
     font-size: 20px;
     color: white; /* Text color */
+    margin-top: 20px;
     text-decoration: none;
     background-color: #C6BEB2; /* Button color changed to #C6BEB2 */
     border-radius: 5px;
@@ -171,6 +186,7 @@ body {
     transition: background-color 0.3s ease, transform 0.3s ease;
     animation: shine 2s infinite; /* Shine animation */
     align-self: center;
+    letter-spacing: 1px;
 }
 
 @keyframes shine {
@@ -191,6 +207,7 @@ body {
 .order-button:hover {
     background-color: #B0A49C; /* Darker shade on hover */
     box-shadow: 0 0 40px rgba(176, 164, 156, 0.8); /* Stronger shadow on hover */
+    color: #f7f7f7;
 }
 
 .welcome-body {
