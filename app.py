@@ -60,32 +60,57 @@ def addtocart():
     initialize_cart()
 
     pizza = MenuItem.query.get(request.form.get('id'))
+    
+    if pizza.ItemType == "Pizza":
 
-    topping = request.form.get('topping').capitalize()
-    pizza_size = request.form.get('pizza_size').capitalize()
-    pizza_price = pizza.PizzaPrice
-    pizza_name = pizza.PizzaName
-    quantity = int(request.form.get('quantity'))
+        topping = request.form.get('topping').capitalize()
+        pizza_size = request.form.get('pizza_size').capitalize()
+        pizza_price = pizza.PizzaPrice
+        pizza_name = pizza.PizzaName
+        pizza_image = pizza.PizzaImage
+        quantity = int(request.form.get('quantity'))
 
-    item = {
-        'pizza_name' : pizza_name,
-        'pizza_size' : pizza_size,
-        'pizza_price' : pizza_price,
-        'topping' : topping,
-        'quantity' : quantity
-    }
+        item = {
+            'pizza_name' : pizza_name,
+            'pizza_size' : pizza_size,
+            'pizza_price' : pizza_price,
+            'topping' : topping,
+            'quantity' : quantity,
+            'pizza_image': pizza_image
+        }
 
-    session['cart'].append(item)
-    session.modified = True
+        session['cart'].append(item)
+        session.modified = True
 
-    return redirect(url_for('view_cart'))
+        return redirect(url_for('view_cart'))
+    else:
+        topping = "None"
+        pizza_size = "None"
+        pizza_price = pizza.PizzaPrice
+        pizza_name = pizza.PizzaName
+        quantity = int(request.form.get('quantity'))
+
+        item = {
+            'pizza_name' : pizza_name,
+            'pizza_size' : pizza_size,
+            'pizza_price' : pizza_price,
+            'topping' : topping,
+            'quantity' : quantity
+        }
+
+        session['cart'].append(item)
+        session.modified = True
+
+        return redirect(url_for('view_cart'))
 
 
 @app.route('/cart')
 def view_cart():
     cart = session.get('cart', [])
+    total_price = sum(item['pizza_price'] for item in session.get('cart', []))
 
-    return render_template('cart.html', cart = cart)
+
+    return render_template('cart.html', cart = cart, total_price = total_price)
 
 @app.route('/clear_cart')
 def clear_cart():

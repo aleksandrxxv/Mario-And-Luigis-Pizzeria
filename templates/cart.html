@@ -6,7 +6,25 @@
 <div class="container">
     <h1>Your Cart</h1>
 
-    <table class="table table-bordered">
+    <div class="table-section">
+        {% for item in cart%}
+        <div class="product-container">
+            <img src="{{item.pizza_image}}" alt="Product image">
+            <div class="flex-item">
+                <h2>{{ item.pizza_name }}</h2>
+                <p>{{ item.topping }}</p>
+            </div>  
+            <h2>{{ item.pizza_size }}</h2>
+            <h2>{{ item.quantity }} x</h2>
+            <h2>{{ item.pizza_price * item.quantity}} €</h2>
+        </div>
+
+        {% else %}
+        <h1>Your cart is empty</h1>
+        {% endfor%}
+    </div>
+
+    <!-- <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Pizza Name</th>
@@ -31,7 +49,7 @@
             </tr>
             {% endfor %}
         </tbody>
-    </table>
+    </table> -->
     <div id="modalcheckout" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -64,12 +82,11 @@
             </div>
         </div>
     </div>
-
-    <a href="/clear_cart" class="btn btn-danger">Clear Cart</a>
-
-    <a href="/" class="btn btn-secondary">Back to Home</a>
-
-    <a href="" data-bs-toggle="modal" data-bs-target="#modalcheckout" class="btn btn-sucess">Place Order</a>
+    <div class="cart-buttons">
+        <a href="/clear_cart" class="btn btn-danger">Clear Cart</a>
+        <a href="" data-bs-toggle="modal" data-bs-target="#modalcheckout" class="btn btn-sucess">Place Order</a>
+        <h1>Total: {{total_price}} €</h1>
+    </div>
 </div>
 
 <!-- Bootstrap JS (for table functionality) -->

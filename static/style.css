@@ -268,3 +268,20 @@ body {
 .container1 {
     height: 87%;
 }
+
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #dad1d188;
+    border-radius: 10px;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    text-align: center;
+}
