@@ -19,16 +19,16 @@
                         <label for="pizza_size{{item.id}}" class="form-label">Select Pizza Size:</label>
                         <div class="row">
                             <div class="col-4">
-                                <input type="radio" class="btn-check" name="pizza_size" id="small{{item.id}}" value="small" required>
-                                <label class="btn btn-outline-primary btn-size" for="small{{item.id}}">Small</label>
+                                <input type="radio" name="pizza_size" id="small{{item.id}}" value="small" required>
+                                <label class="custom-radio" for="small{{item.id}}">Small</label>
                             </div>
                             <div class="col-4">
-                                <input type="radio" class="btn-check" name="pizza_size" id="medium{{item.id}}" value="medium" required>
-                                <label class="btn btn-outline-primary btn-size" for="medium{{item.id}}">Medium</label>
+                                <input type="radio" name="pizza_size" id="medium{{item.id}}" value="medium" required>
+                                <label class="custom-radio" for="medium{{item.id}}">Medium</label>
                             </div>
                             <div class="col-4">
-                                <input type="radio" class="btn-check" name="pizza_size" id="large{{item.id}}" value="large" required>
-                                <label class="btn btn-outline-primary btn-size" for="large{{item.id}}">Large</label>
+                                <input type="radio" name="pizza_size" id="large{{item.id}}" value="large" required>
+                                <label class="custom-radio" for="large{{item.id}}">Large</label>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Add To Cart - {{item.PizzaPrice}}</button>
+                        <button class="menu-item-button" type="submit">Add To Cart - {{item.PizzaPrice}}</button>
                     </div>
                     </form>
                 </div>
