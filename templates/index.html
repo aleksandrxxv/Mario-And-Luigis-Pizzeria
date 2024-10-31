@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/style.css">
-    <title>Mario And Luigi's Pizza</title>
-</head>
-<body>
-    <h1>Welcome to Mario and Luigi's Pizzeria</h1>
-    <a href="/menu">Menu</a>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+    <div class="welcome-body">
+        <div class="welcome-container">
+            <h1>Welcome to Mario and Luigi's Pizzeria</h1>
+            <a href="/menu" class="order-button">Check the menu</a>
+        </div>
+    </div>
+{% endblock %}

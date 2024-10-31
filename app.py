@@ -22,6 +22,9 @@ class MenuItem(db.Model):
     PizzaPrice = db.Column(db.Float)
     PizzaToppings = db.Column(db.Text)
     PizzaImage = db.Column(db.Text)
+    PizzaIngridients = db.Column(db.String(100))
+    ItemType = db.Column(db.String(100))
+
 
     def get_toppings_list(self):
         return json.loads(self.PizzaToppings) if self.PizzaToppings else []
@@ -92,11 +95,14 @@ def clear_cart():
 @app.route('/checkout', methods = ['GET','POST'])
 def checkout():
     cart = session.get('cart', [])
+    name = request.form.get("name")
+    order_place = request.form.get("place").capitalize()
+
 
     if cart:
         cart_json = json.dumps(cart)
 
-        new_order = Orders(order_placer = "Admin", order_time = datetime.datetime.now(), order_contents=cart_json, order_place="Pickup", order_status="Received")
+        new_order = Orders(order_placer = name, order_time = datetime.datetime.now(), order_contents=cart_json, order_place=order_place, order_status="Received")
 
         db.session.add(new_order)
         db.session.commit()
@@ -119,7 +125,8 @@ def view_orders():
             'order_time': order.order_time,
             'cart_items': order_cart,
             'order_place': order.order_place,
-            'order_status': order.order_status   
+            'order_status': order.order_status,
+            'order_placer': order.order_placer  
         })
     return render_template('orders.html', orders=orders_with_cart)
 
