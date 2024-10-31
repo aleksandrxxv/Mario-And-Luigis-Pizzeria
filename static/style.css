@@ -70,6 +70,11 @@
 .menu-item:hover {
     transform: scale(1.05);
 }
+.menu-item p {
+    font-size: small;
+    font-weight: 600;
+    color: #575757;
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -78,13 +83,15 @@ body {
 }
 
 .navbar1 {
-    background-color: #333;
+    background-color: #fff;
     overflow: hidden;
+    padding: 15px 20px; /* Increased padding for height */
+
 }
 
 .navbar-brand {
     float: left;
-    color: #fff;
+    color: #888;
     padding: 14px 20px;
     text-decoration: none;
     font-size: 20px;
@@ -99,6 +106,7 @@ body {
 
 .navbar-navi li {
     display: inline;
+    color: #888;
 }
 
 .navbar-navi li a {
@@ -106,8 +114,13 @@ body {
     padding: 14px 20px;
     text-decoration: none;
     display: inline-block;
+    color: #888;
 }
 
+.navbar-navi li a img {
+    height: auto;
+    width: 7vh;
+}
 .navbar-navi li a:hover {
-    background-color: #575757;
+    color: violet;
 }
