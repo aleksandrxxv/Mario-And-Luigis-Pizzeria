@@ -159,21 +159,38 @@ body {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle shadow effect */
 }
 
-
-/* Button Style */
 .order-button {
-    padding: 10px 20px; /* Button padding */
-    background-color: #ff5733; /* Button color */
-    color: white; /* Button text color */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 18px; /* Button font size */
-    margin-top: 10vh;
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 20px;
+    color: white; /* Text color */
+    text-decoration: none;
+    background-color: #C6BEB2; /* Button color changed to #C6BEB2 */
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(198, 190, 178, 0.5); /* Soft shadow matching button color */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: shine 2s infinite; /* Shine animation */
     align-self: center;
 }
 
+@keyframes shine {
+    0% {
+        box-shadow: 0 0 20px rgba(198, 190, 178, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(198, 190, 178, 0.8);
+        transform: scale(1.05); /* Slightly enlarge */
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(198, 190, 178, 0.5);
+        transform: scale(1);
+    }
+}
+
 .order-button:hover {
-    background-color: #c70000; /* Darker shade on hover */
+    background-color: #B0A49C; /* Darker shade on hover */
+    box-shadow: 0 0 40px rgba(176, 164, 156, 0.8); /* Stronger shadow on hover */
 }
 
 .welcome-body {
