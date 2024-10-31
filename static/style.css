@@ -141,6 +141,15 @@ body {
     color: #ff6347;
 }
 
+.hover-image {
+    height: auto;
+    width: 7vh;
+}
+
+.hover-image:hover {
+    filter: brightness(0) saturate(100%) invert(28%) sepia(98%) saturate(535%) hue-rotate(6deg) brightness(100%) contrast(100%); 
+}
+
 
 * {
     margin: 0;
