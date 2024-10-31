@@ -22,6 +22,9 @@ class MenuItem(db.Model):
     PizzaPrice = db.Column(db.Float)
     PizzaToppings = db.Column(db.Text)
     PizzaImage = db.Column(db.Text)
+    PizzaIngridients = db.Column(db.String(100))
+    ItemType = db.Column(db.String(100))
+
 
     def get_toppings_list(self):
         return json.loads(self.PizzaToppings) if self.PizzaToppings else []

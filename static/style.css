@@ -8,16 +8,67 @@
     color: white;
 }
 
-.grid-container{
+.grid-containero{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
     gap: 20px;
+    max-width: 1200px; /* Set max width */
+    margin: 0 auto; /* Center the grid horizontally */
+    padding: 15px; /* Optional: Add padding around items */
+    box-sizing: border-box;
+
 }
 .order-card{
     border: 1px solid #dddfdd;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0, 0.1);
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+    padding: 10px;
+    height: 100%; 
+}
+
+.menu-item-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-top: auto; /* Push button to bottom of .menu-item */
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.menu-item-button:hover {
+    background-color: #e5533e;
+    color: #fff;
+  }
+
+.menu-item img {
+    width: 100%;
+    max-height: 150px; /* Set maximum height */
+    object-fit: cover; /* Crop image if it exceeds max height */
+    display: block; /* Remove extra space under images */
+
+}
+.menu-item:hover {
+    transform: scale(1.05);
 }
 
 body {
