@@ -107,9 +107,7 @@ input[type="radio"]:checked + label.custom-radio {
 
 
 
-.menu-item:hover {
-    transform: scale(1.05);
-}
+
 .menu-item h1 {
     font-size: medium;
     color: #404040;
@@ -142,6 +140,10 @@ body {
     text-decoration: none;
     font-size: 50px;
     font-weight: 600;
+}
+.navbar-brand img {
+    height: 60px;
+    margin-right: 10px;
 }
 .navbar-brand:hover {
     color: #ff6347;
@@ -282,3 +284,58 @@ body {
     height: 50px;
     text-align: center;
 }
+
+/* Keyframes for a slower, more pronounced fade-in and slide-up effect */
+@keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px); /* Start further down for more visibility */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* End at original position */
+    }
+  }
+  
+  .menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+    padding: 10px;
+    height: 100%; 
+    opacity: 0; /* Start items as invisible */
+    animation: fadeInUp 0.3s ease forwards; /* Increased duration for slower animation */
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+}
+
+  /* Flexbox styling for filter bar */
+.items-selector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .filter-button {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  

@@ -54,6 +54,15 @@ def menu():
     all_items = MenuItem.query.all()
     return render_template('menu.html', items = all_items)
 
+@app.route('/menu/<type>')
+def menu_filter(type):
+    if type == "":
+        all_items = MenuItem.query.all()
+        return render_template('menu.html', items = all_items)
+    else:
+        filtered_items = MenuItem.query.filter_by(ItemType = type).all()
+        return render_template('menu.html', items = filtered_items)
+
 @app.route('/addtocart', methods = ['POST'])
 def addtocart():
 

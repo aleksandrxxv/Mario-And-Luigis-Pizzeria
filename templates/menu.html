@@ -3,6 +3,12 @@
 {% block title %}Menu{% endblock %}
 
 {% block content %}
+<div class="items-selector">
+    <a class="filter-button" href="/menu">All</a>
+    <a class="filter-button" href="/menu/Pizza">Pizza</a>
+    <a class="filter-button" href="/menu/Drink">Drinks</a>
+    <a class="filter-button" href="/menu/Sauce">Sauces</a>
+</div>
 <div class="grid-containero">
     {% for item in items%}
     <div id="modalorder{{item.id}}" class="modal fade" role="dialog">
@@ -85,6 +91,16 @@
                 quantityInput.value = currentValue - 1;
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+        const menuItems = document.querySelectorAll(".menu-item");
+        menuItems.forEach((item, index) => {
+          item.style.animation = `fadeInUp 0.6s ease forwards`;
+          item.style.animationDelay = `${index * 0.2}s`; /* Stagger delay by 0.2s */
+        });
+      });
+      
     </script>
+   
 
 {% endblock %}
