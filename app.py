@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 import json
 import datetime
+import time
 
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -15,6 +16,10 @@ db.init_app(app)
 def initialize_cart():
     if 'cart' not in session:
         session['cart'] = []
+
+def initiallize_user():
+    if 'user' not in session:
+        session['user'] = []
 
 class MenuItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -47,6 +52,7 @@ def dev():
 
 @app.route('/')
 def index():
+    session.pop('user', None)
     return render_template('index.html')
 
 @app.route('/menu')
@@ -124,13 +130,16 @@ def view_cart():
 @app.route('/clear_cart')
 def clear_cart():
     session.pop('cart', None)
-    return redirect(url_for('index'))
+    return redirect('/cart')
 
 @app.route('/checkout', methods = ['GET','POST'])
 def checkout():
     cart = session.get('cart', [])
     name = request.form.get("name")
     order_place = request.form.get("place").capitalize()
+    initiallize_user()
+    session['user'] = name
+    session.modified = True
 
 
     if cart:
@@ -143,9 +152,28 @@ def checkout():
 
         session.pop('cart', None)
 
-        return "Order Placed"
+        return render_template('loading.html')
     else:
         return "Your Cart is empty"
+    
+@app.route('/placed_order')
+def placed_order():
+    user = session.get('user')
+    
+    user_order = Orders.query.filter_by(order_placer = user)
+    orders_with_cart = []
+    for order in user_order:
+        order_cart = json.loads(order.order_contents)
+        orders_with_cart.append({
+            'id': order.id,
+            'order_time': order.order_time,
+            'cart_items': order_cart,
+            'order_place': order.order_place,
+            'order_status': order.order_status,
+            'order_placer': order.order_placer
+
+        })
+    return render_template('track_order.html', orders=orders_with_cart)
 
 @app.route('/view_orders')
 def view_orders():
@@ -177,6 +205,7 @@ def track_order(order_placer):
             'cart_items': order_cart,
             'order_place': order.order_place,
             'order_status': order.order_status
+
         })
     return render_template('orders.html', orders=orders_with_cart)
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+</head>
+<body>
+    <h1>Your order has been received.</h1>
+    {% for order in orders %}
+    <div class="order-card">
+        <h3>Name: {{ order.order_placer }}</h3>
+        <h2>{{order.order_place}}</h2>
+        <h4>Items:</h4>
+        <ul>
+            {% for item in order.cart_items %}
+                <li>{{ item['quantity'] }} x {{ item['pizza_size'] }} {{item['pizza_name']}}</li>
+                <li>{{item['topping']}}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>
