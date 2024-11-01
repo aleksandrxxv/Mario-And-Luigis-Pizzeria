@@ -1,3 +1,9 @@
+* {
+    font-family: "Holtwood One SC", serif;
+    font-weight: 1  0 !important;
+    font-style: normal;
+}
+
 .btn-size {
     width: 100%;
     padding: 20px;
@@ -13,9 +19,9 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     width: 100%;
     gap: 20px;
-    max-width: 1200px; /* Set max width */
-    margin: 0 auto; /* Center the grid horizontally */
-    padding: 15px; /* Optional: Add padding around items */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
     box-sizing: border-box;
 
 }
@@ -50,7 +56,7 @@
     cursor: pointer;
     font-size: 14px;
     border-radius: 5px;
-    margin-top: auto; /* Push button to bottom of .menu-item */
+    margin-top: auto;
     text-align: center;
     text-decoration: none;
     transition: background-color 0.3s;
@@ -62,40 +68,86 @@
 
 .menu-item img {
     width: 100%;
-    max-height: 150px; /* Set maximum height */
-    object-fit: cover; /* Crop image if it exceeds max height */
-    display: block; /* Remove extra space under images */
+    max-height: 150px;
+    object-fit: cover;
+    display: block;
 
 }
-.menu-item:hover {
-    transform: scale(1.05);
+.modal-body {
+    font-weight: 100 !important;
 }
+
+input[type="radio"] {
+    display: none;
+}
+
+/* Style the label to look like a button */
+label.custom-radio {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #ff6347; /* Default border color */
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.2s, border-color 0.2s;
+    color: #ff6347; /* Default text color */
+}
+
+/* Change background and text color on hover */
+label.custom-radio:hover {
+    background-color: #e7f1ff; /* Light blue on hover */
+}
+
+/* Change styles when the radio button is checked */
+input[type="radio"]:checked + label.custom-radio {
+    background-color: #ff6347; /* Selected background color */
+    color: white; /* Text color when selected */
+    border-color: #ff6347; /* Darker border when selected */
+}
+
+
+
+
+.menu-item h1 {
+    font-size: medium;
+    color: #404040;
+}
+
 .menu-item p {
-    font-size: small;
+    font-size: x-small;
     font-weight: 600;
-    color: #575757;
+    color: #747474
 }
 
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 .navbar1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #C6BEB2;
     overflow: hidden;
-    padding: 15px 20px; /* Increased padding for height */
-
+    padding: 15px 20px;
+    letter-spacing: 2px;
 }
 
 .navbar-brand {
     float: left;
     color: #F7F7F7;
-    padding: 14px 20px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 50px;
+    font-weight: 600;
 }
+.navbar-brand img {
+    height: 60px;
+    margin-right: 10px;
+}
+.navbar-brand:hover {
+    color: #ff6347;
+}    
 
 .navbar-navi {
     list-style-type: none;
@@ -122,55 +174,65 @@ body {
     width: 7vh;
 }
 .navbar-navi li a:hover {
-    color: violet;
+    color: #ff6347;
 }
 
-/* Reset padding and margins */
+.hover-image {
+    height: auto;
+    width: 7vh;
+}
+
+.hover-image:hover {
+    filter: brightness(0) saturate(100%) invert(28%) sepia(98%) saturate(535%) hue-rotate(6deg) brightness(100%) contrast(100%); 
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* General Body Styling */
 body {
-    font-family: Arial, sans-serif; /* Adjust the font as needed */
-    background-color: #f8f8f8; /* Optional: Background color */
+    background-color: #f8f8f8;
     height: 100vh; /* Full height */
+    height: 100vh;
 }
 
-/* Welcome Container */
+
 .welcome-container {
     display: flex;
-    flex-direction: column; /* Stack title and button vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: flex-start; /* Align items to the left */
-    padding-left: 30vh; /* Add padding on the left */
-    height: 100%; /* Full height of the viewport */
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 30vh;
+    height: 100%;
     width: 50%;
 }
 
-/* Title Style */
+
 .welcome-container h1 {
-    font-size: 45px; /* Adjust the title size */
-    margin-bottom: 10px; /* Space between title and text */
-    color: #f7f7f7; /* Title color */
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #f7f7f7;
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle shadow effect */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .order-button {
     display: inline-block;
     padding: 15px 30px;
     font-size: 20px;
-    color: white; /* Text color */
+    color: white;
+    margin-top: 20px;
     text-decoration: none;
-    background-color: #C6BEB2; /* Button color changed to #C6BEB2 */
+    background-color: #C6BEB2;
     border-radius: 5px;
-    box-shadow: 0 0 20px rgba(198, 190, 178, 0.5); /* Soft shadow matching button color */
+    box-shadow: 0 0 20px rgba(198, 190, 178, 0.5);
     transition: background-color 0.3s ease, transform 0.3s ease;
-    animation: shine 2s infinite; /* Shine animation */
+    animation: shine 2s infinite;
     align-self: center;
+    letter-spacing: 1px;
 }
 
 @keyframes shine {
@@ -180,7 +242,7 @@ body {
     }
     50% {
         box-shadow: 0 0 40px rgba(198, 190, 178, 0.8);
-        transform: scale(1.05); /* Slightly enlarge */
+        transform: scale(1.05);
     }
     100% {
         box-shadow: 0 0 20px rgba(198, 190, 178, 0.5);
@@ -189,8 +251,9 @@ body {
 }
 
 .order-button:hover {
-    background-color: #B0A49C; /* Darker shade on hover */
-    box-shadow: 0 0 40px rgba(176, 164, 156, 0.8); /* Stronger shadow on hover */
+    background-color: #B0A49C;
+    box-shadow: 0 0 40px rgba(176, 164, 156, 0.8);
+    color: #f7f7f7;
 }
 
 .welcome-body {
@@ -198,9 +261,81 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 100%;
+    height: 100vh;
 }
 
 .container1 {
-    height: 100%;
+    height: 87%;
 }
+
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #dad1d188;
+    border-radius: 10px;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    text-align: center;
+}
+
+/* Keyframes for a slower, more pronounced fade-in and slide-up effect */
+@keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px); /* Start further down for more visibility */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* End at original position */
+    }
+  }
+  
+  .menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+    padding: 10px;
+    height: 100%; 
+    opacity: 0; /* Start items as invisible */
+    animation: fadeInUp 0.3s ease forwards; /* Increased duration for slower animation */
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+}
+
+  /* Flexbox styling for filter bar */
+.items-selector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .filter-button {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  

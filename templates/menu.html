@@ -3,6 +3,12 @@
 {% block title %}Menu{% endblock %}
 
 {% block content %}
+<div class="items-selector">
+    <a class="filter-button" href="/menu">All</a>
+    <a class="filter-button" href="/menu/Pizza">Pizza</a>
+    <a class="filter-button" href="/menu/Drink">Drinks</a>
+    <a class="filter-button" href="/menu/Sauce">Sauces</a>
+</div>
 <div class="grid-containero">
     {% for item in items%}
     <div id="modalorder{{item.id}}" class="modal fade" role="dialog">
@@ -15,29 +21,22 @@
                     <img src="{{ item.PizzaImage}}" id="image{{item.id}}" alt="Pizza Image" height="60px">
                     <form action="{{url_for('addtocart')}}" method="POST">
                     <input type="hidden" name="id" value="{{item.id}}">
+                    {%if item.ItemType == "Pizza" %}
                     <div class="mb-3">
                         <label for="pizza_size{{item.id}}" class="form-label">Select Pizza Size:</label>
                         <div class="row">
                             <div class="col-4">
-                                <input type="radio" class="btn-check" name="pizza_size" id="small{{item.id}}" value="small" required>
-                                <label class="btn btn-outline-primary btn-size" for="small{{item.id}}">Small</label>
+                                <input type="radio" name="pizza_size" id="small{{item.id}}" value="small" required>
+                                <label class="custom-radio" for="small{{item.id}}">Small</label>
                             </div>
                             <div class="col-4">
-                                <input type="radio" class="btn-check" name="pizza_size" id="medium{{item.id}}" value="medium" required>
-                                <label class="btn btn-outline-primary btn-size" for="medium{{item.id}}">Medium</label>
+                                <input type="radio" name="pizza_size" id="medium{{item.id}}" value="medium" required>
+                                <label class="custom-radio" for="medium{{item.id}}">Medium</label>
                             </div>
                             <div class="col-4">
-                                <input type="radio" class="btn-check" name="pizza_size" id="large{{item.id}}" value="large" required>
-                                <label class="btn btn-outline-primary btn-size" for="large{{item.id}}">Large</label>
+                                <input type="radio" name="pizza_size" id="large{{item.id}}" value="large" required>
+                                <label class="custom-radio" for="large{{item.id}}">Large</label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Quantity:</label>
-                        <div class="input-group">
-                            <button type="button" class="btn btn-outline-secondary" id="decrement{{item.id}}" onclick="decrementQuantity({{item.id}})">-</button>
-                            <input type="number" class="form-control" id="quantity{{item.id}}" name="quantity" value="1" min="1" readonly>
-                            <button type="button" class="btn btn-outline-secondary" id="increment{{item.id}}" onclick="incrementQuantity({{item.id}})">+</button>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -48,8 +47,17 @@
                             {% endfor %}
                         </select>
                     </div>
+                    {% endif %}
+                    <div class="mb-3">
+                        <label class="form-label">Quantity:</label>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-outline-secondary" id="decrement{{item.id}}" onclick="decrementQuantity({{item.id}})">-</button>
+                            <input type="number" class="form-control" id="quantity{{item.id}}" name="quantity" value="1" min="1" readonly>
+                            <button type="button" class="btn btn-outline-secondary" id="increment{{item.id}}" onclick="incrementQuantity({{item.id}})">+</button>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Add To Cart - {{item.PizzaPrice}}</button>
+                        <button class="menu-item-button" type="submit">Add To Cart - {{item.PizzaPrice}}</button>
                     </div>
                     </form>
                 </div>
@@ -62,7 +70,7 @@
             {% if item.PizzaIngridients != None %}
             <p>{{ item.PizzaIngridients }}</p>
             {% endif %}
-            <p>{{ item.PizzaPrice }} $</p>
+            <p>{{ item.PizzaPrice }} €</p>
             <a href="" class="menu-item-button" data-bs-toggle="modal" data-bs-target="#modalorder{{item.id}}">Add to cart</a>
         </div>
     {% endfor %}
@@ -83,6 +91,16 @@
                 quantityInput.value = currentValue - 1;
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+        const menuItems = document.querySelectorAll(".menu-item");
+        menuItems.forEach((item, index) => {
+          item.style.animation = `fadeInUp 0.6s ease forwards`;
+          item.style.animationDelay = `${index * 0.2}s`; /* Stagger delay by 0.2s */
+        });
+      });
+      
     </script>
+   
 
 {% endblock %}
