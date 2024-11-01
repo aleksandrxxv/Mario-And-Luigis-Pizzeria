@@ -37,13 +37,16 @@
 .order-card a {
     padding: 10px 15px;
     text-decoration: none;
-    background-color: #0dfd1d;
+    background-color: #2fa437;
     color: white;
     border-radius: 15px;
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease;
 }
+.order-card a:hover {
+    background-color: #1a7120
+} 
 
 .menu-item {
     display: flex;
@@ -299,15 +302,14 @@ body {
     text-align: center;
 }
 
-/* Keyframes for a slower, more pronounced fade-in and slide-up effect */
 @keyframes fadeInUp {
     0% {
       opacity: 0;
-      transform: translateY(40px); /* Start further down for more visibility */
+      transform: translateY(40px);
     }
     100% {
       opacity: 1;
-      transform: translateY(0); /* End at original position */
+      transform: translateY(0);
     }
   }
   
@@ -323,15 +325,14 @@ body {
     transition: transform 0.3s;
     padding: 10px;
     height: 100%; 
-    opacity: 0; /* Start items as invisible */
-    animation: fadeInUp 0.3s ease forwards; /* Increased duration for slower animation */
+    opacity: 0;
+    animation: fadeInUp 0.3s ease forwards;
 }
 
 .menu-item:hover {
     transform: scale(1.05);
 }
 
-  /* Flexbox styling for filter bar */
 .items-selector {
     display: flex;
     flex-direction: row;
