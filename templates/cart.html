@@ -28,32 +28,6 @@
         {% endfor%}
     </div>
 
-    <!-- <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Pizza Name</th>
-                <th>Topping</th>
-                <th>Pizza Size</th>
-                <th>Quantity</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart %}
-            <tr>
-                <td>{{ item.pizza_name }}</td>
-                <td>{{ item.topping }}</td>
-                <td>{{ item.pizza_size }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>${{ item.pizza_price * item.quantity}}</td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="5" class="text-center">Your cart is empty!</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table> -->
     <div id="modalcheckout" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -93,6 +67,6 @@
     </div>
 </div>
 
-<!-- Bootstrap JS (for table functionality) -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
  {% endblock %}
