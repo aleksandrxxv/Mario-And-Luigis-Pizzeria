@@ -178,12 +178,6 @@ def addtocart():
 def view_cart():
     cart = session.get('cart', [])
     total_price = sum(item['pizza_price'] * item['quantity'] for item in session.get('cart', []))
-<<<<<<< HEAD
-=======
-
->>>>>>> 1f25ba37bd26445fd881cfc8feac991b0e8fe387
-
-
     return render_template('cart.html', cart = cart, total_price = total_price)
 
 @app.route('/clear_cart')
