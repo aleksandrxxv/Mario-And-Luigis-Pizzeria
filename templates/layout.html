@@ -14,6 +14,9 @@
     <nav class="navbar1">
         <a href="{{ url_for('index') }}" class="navbar-brand"><img src="https://dpznsagmfkgblxagagdm.supabase.co/storage/v1/object/sign/Website%20style/mario%20and%20luigi%20logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJXZWJzaXRlIHN0eWxlL21hcmlvIGFuZCBsdWlnaSBsb2dvLnBuZyIsImlhdCI6MTczMDQ1NzM3NiwiZXhwIjoxNzYxOTkzMzc2fQ.Foc0D9l8wuS92aeGJT_Bu_ywabukpKFcW2G5z0Xxh-0&t=2024-11-01T10%3A36%3A16.803Z" alt="">Mario And Luigi's Pizzeria</a>
         <ul class="navbar-navi">
+            {% if user %}
+            <li><a href="{{ url_for('track_order') }}">Track your order</a></li>
+            {% endif %}
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('menu') }}">Menu</a></li>
             <li><a href="/cart"><img src="https://dpznsagmfkgblxagagdm.supabase.co/storage/v1/object/sign/Pizza%20Images/cart-shopping-solid%20(1).svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJQaXp6YSBJbWFnZXMvY2FydC1zaG9wcGluZy1zb2xpZCAoMSkuc3ZnIiwiaWF0IjoxNzMwMzc2MzMzLCJleHAiOjE3NjE5MTIzMzN9.LS7EZozBXt3oPEJpNsynScmtMbMkkDcV46X1wKgqT-c&t=2024-10-31T12%3A05%3A33.999Z" alt="Shopping Cart" class="hover-image"> </a></li>

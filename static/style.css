@@ -45,19 +45,7 @@
     transition: background-color 0.3s ease;
 }
 
-.menu-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s;
-    padding: 10px;
-    height: 100%; 
-}
+
 
 .menu-item-button {
     display: block;
@@ -320,7 +308,6 @@ body {
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
-    transition: transform 0.3s;
     padding: 10px;
     height: 100%; 
     opacity: 0; /* Start items as invisible */
@@ -361,3 +348,24 @@ body {
     text-align: center;
   }
   
+.progress-container {
+width: 100%;        /* Full width */
+background-color: #e0e0e0;  /* Light gray background */
+border-radius: 5px; /* Rounded corners */
+height: 20px;       /* Height of the progress bar */
+overflow: hidden;
+}
+            
+.progress-bar {
+height: 100%;           /* Full height of the container */
+background-color: #4caf50;  /* Green color */
+width: 0%;              /* Initial width (can be dynamically changed) */
+border-radius: 5px 0 0 5px; /* Rounded corner only on the left */
+transition: width 0.3s ease; /* Smooth transition */
+}
+.track-container {
+display: flex;
+flex-direction: column;
+width: 100vh;
+height: 150vh;
+}

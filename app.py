@@ -52,13 +52,14 @@ def dev():
 
 @app.route('/')
 def index():
-    session.pop('user', None)
+    # session.pop('user', None)
     return render_template('index.html')
 
 @app.route('/menu')
 def menu():
     all_items = MenuItem.query.all()
-    return render_template('menu.html', items = all_items)
+    user = session.get('user')
+    return render_template('menu.html', items = all_items, user = user)
 
 @app.route('/menu/<type>')
 def menu_filter(type):
@@ -156,24 +157,6 @@ def checkout():
     else:
         return "Your Cart is empty"
     
-@app.route('/placed_order')
-def placed_order():
-    user = session.get('user')
-    
-    user_order = Orders.query.filter_by(order_placer = user)
-    orders_with_cart = []
-    for order in user_order:
-        order_cart = json.loads(order.order_contents)
-        orders_with_cart.append({
-            'id': order.id,
-            'order_time': order.order_time,
-            'cart_items': order_cart,
-            'order_place': order.order_place,
-            'order_status': order.order_status,
-            'order_placer': order.order_placer
-
-        })
-    return render_template('track_order.html', orders=orders_with_cart)
 
 @app.route('/view_orders')
 def view_orders():
@@ -192,21 +175,22 @@ def view_orders():
         })
     return render_template('orders.html', orders=orders_with_cart)
 
-@app.route('/track_order/<order_placer>')
-def track_order(order_placer):
-    orders = Orders.query.filter_by(order_placer = order_placer).all()
-
+@app.route('/track_order')
+def track_order():
+    user = session.get('user')
+        
+    user_order = Orders.query.filter_by(order_placer = user)
     orders_with_cart = []
-    for order in orders:
+    for order in user_order:
         order_cart = json.loads(order.order_contents)
         orders_with_cart.append({
             'id': order.id,
             'order_time': order.order_time,
             'cart_items': order_cart,
             'order_place': order.order_place,
-            'order_status': order.order_status
+            'order_status': order.order_status,
+            'order_placer': order.order_placer,
 
         })
-    return render_template('orders.html', orders=orders_with_cart)
-
+    return render_template('track_order.html', orders=orders_with_cart)
 
