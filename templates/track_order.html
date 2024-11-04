@@ -21,22 +21,25 @@
                 {% for item in order.cart_items %}
                 {% if item['pizza_size'] != 'None'%}    
                     <li>{{ item['quantity'] }} x {{ item['pizza_size'] }} {{item['pizza_name']}}</li>
-                    <li>{{item['topping']}}</li>
+                    <li>• {{ item['topping']}}</li>
                 {% else %}
                 <li>{{ item['quantity'] }} x {{item['pizza_name']}}</li>
 
                 {% endif %}
                 {% endfor %}
             </ul>
-            {% if order.order_status == "Received"%}
-            <div class="progress-container">
-                <div class="progress-bar" style="width: 10%;"></div>
-            </div>
-            {% elif order.order_status == "Preparing"%}
-            <div class="progress-container">
-                <div class="progress-bar" style="width: 50%;"></div>
-            </div>
-            {% elif order.order_status == "Ready"%}
+            {% if order.order_status == "Received" %}
+                <p class="status-text">Order Received</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 10%;"></div>
+                </div>
+            {% elif order.order_status == "Preparing" %}
+                <p class="status-text">Preparing</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 50%;"></div>
+                </div>
+            {% elif order.order_status == "Ready" %}
+                <p class="status-text">Ready for Pickup</p>
             <div class="progress-container">
                 <div class="progress-bar" style="width: 100%;"></div>
             </div>
