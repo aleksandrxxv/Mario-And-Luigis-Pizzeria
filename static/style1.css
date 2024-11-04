@@ -1,0 +1,94 @@
+/* Basic styling for the body */
+body {
+    font-family: "Holtwood One SC", serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Styling the main header */
+h1 {
+    font-size: 2em;
+    color: #333;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Container for all orders */
+.track-container {
+    width: 90%;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Order details styling */
+.track-container h3 {
+    font-size: 1.3em;
+    margin: 5px 0;
+    color: #444;
+}
+
+.track-container h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #555;
+}
+
+.track-container h4 {
+    font-size: 1.1em;
+    margin-top: 15px;
+    color: #666;
+}
+
+/* Styling for unordered list and list items */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+ul li {
+    font-size: 1.1em;
+    margin: 5px 0;
+    padding-left: 10px;
+}
+
+/* Progress bar container styling */
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0;
+    height: 20px;
+}
+
+/* Progress bar styling */
+.progress-bar {
+    height: 100%;
+    background-color: #ff6347;
+    text-align: center;
+    color: white;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Order ready message */
+.track-container .order-ready {
+    font-size: 1.5em;
+    color: #4caf50;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}

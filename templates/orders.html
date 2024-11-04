@@ -7,7 +7,8 @@
     <title>Orders</title>
 </head>
 <body>
-    <div class="grid-container">
+    <h1 class="header">KITCHEN MONITOR</h1>
+    <div class="grid-containero">
         {% for order in orders %}
         <div class="order-card">
             <h3>Name: {{ order.order_placer }}</h3>
@@ -15,8 +16,10 @@
             <h4>Items:</h4>
             <ul>
                 {% for item in order.cart_items %}
+                {% if item['pizza_size'] != 'None'%}
                     <li>{{ item['quantity'] }} x {{ item['pizza_size'] }} {{item['pizza_name']}}</li>
                     <li>{{item['topping']}}</li>
+                {% endif %}
                 {% endfor %}
             </ul>
             {% if order.order_status == "Received"%}

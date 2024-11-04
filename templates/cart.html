@@ -6,32 +6,28 @@
 <div class="container">
     <h1>Your Cart</h1>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Pizza Name</th>
-                <th>Topping</th>
-                <th>Pizza Size</th>
-                <th>Quantity</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart %}
-            <tr>
-                <td>{{ item.pizza_name }}</td>
-                <td>{{ item.topping }}</td>
-                <td>{{ item.pizza_size }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>${{ item.pizza_price * item.quantity}}</td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="5" class="text-center">Your cart is empty!</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-section">
+        {% for item in cart%}
+        <div class="product-container">
+            <img src="{{item.pizza_image}}" alt="Product image">
+            <div class="flex-item">
+                <h2>{{ item.pizza_name }}</h2>
+                {% if item.topping != "None"%}
+                <p>{{ item.topping }}</p>
+                {% endif %}
+            </div>  
+            {% if item.pizza_size != "None"%}
+            <h2>{{ item.pizza_size }}</h2>
+            {% endif %}
+            <h2>{{ item.quantity }} x</h2>
+            <h2>{{ item.pizza_price }} €</h2>
+        </div>
+
+        {% else %}
+        <h1>Your cart is empty</h1>
+        {% endfor%}
+    </div>
+
     <div id="modalcheckout" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -47,31 +43,30 @@
                             <label for="place" class="form-label">Where do you want to eat?</label>
                             <div class="row">
                                 <div class="col-4">
-                                    <input type="radio" class="btn-check" name="place" id="takeout" value="takeout" required>
-                                    <label class="btn btn-outline-primary btn-size" for="takeout">Takeout</label>
+                                    <input type="radio" name="place" id="takeout" value="takeout" required>
+                                    <label class="custom-radio" for="takeout">Takeout</label>
                                 </div>
                                 <div class="col-4">
-                                    <input type="radio" class="btn-check" name="place" id="dinein" value="dinein" required>
-                                    <label class="btn btn-outline-primary btn-size" for="dinein">Dine in</label>
+                                    <input type="radio" name="place" id="dinein" value="dinein" required>
+                                    <label class="custom-radio" for="dinein">Dine in</label>
                                 </div>
                             </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Place Order</button>
+                        <button class="menu-item-button" type="submit">Place Order</button>
                     </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <a href="/clear_cart" class="btn btn-danger">Clear Cart</a>
-
-    <a href="/" class="btn btn-secondary">Back to Home</a>
-
-    <a href="" data-bs-toggle="modal" data-bs-target="#modalcheckout" class="btn btn-sucess">Place Order</a>
+    <div class="cart-buttons">
+        <a href="/clear_cart" class="btn btn-danger">Clear Cart</a>
+        <a href="" data-bs-toggle="modal" data-bs-target="#modalcheckout" class="btn btn-sucess">Place Order</a>
+        <h1>Total: {{total_price}} €</h1>
+    </div>
 </div>
 
-<!-- Bootstrap JS (for table functionality) -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
  {% endblock %}
