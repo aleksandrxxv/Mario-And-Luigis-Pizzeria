@@ -51,24 +51,25 @@
 
 
 .menu-item-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #ff6347;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
-    margin-top: auto;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s;
+    display: block;                    
+    width: 100%;                       
+    padding: 10px;                    
+    background-color: #ff6347 !important;
+    color: #fff;                      
+    border: none;                     
+    cursor: pointer;                  
+    font-size: 14px;                  
+    border-radius: 5px;              
+    margin-top: auto;                 
+    text-align: center;               
+    text-decoration: none;            
+    transition: background-color 0.3s; 
 }
+
 .menu-item-button:hover {
-    background-color: #dc533e;
-    color: #fff;
-  }
+    background-color: #dc533e !important;
+    color: #fff;                       
+}
 
 .menu-item img {
     width: 100%;
@@ -199,7 +200,7 @@ body {
 
 body {
     background-color: #f8f8f8;
-    height: 100vh; /* Full height */
+    height: 100vh;
     height: 100vh;
 }
 

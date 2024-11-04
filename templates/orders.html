@@ -5,11 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Orders</title>
+    <script>
+        function startTimer(button) {
+            const order_id = button.getAttribute('data-id');
+            fetch('/start-timer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ order_id: order_id})
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                window.location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function putInOven(button) {
+            const order_id = button.getAttribute('data-id');
+            fetch('/ready_order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ order_id: order_id})
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                window.location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+
+        function pollForCompletion() {
+            const interval = setInterval(() => {
+                fetch('/check_status')  // Create a new endpoint to check status
+                .then(response => response.text())
+                .then(data => {
+                    if (data === "DONE") {
+                        clearInterval(interval); // Stop polling
+                        location.reload();       // Refresh the page
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }, 1000);  // Poll every second
+        }
+    </script>
 </head>
 <body>
     <h1 class="header">KITCHEN MONITOR</h1>
     <div class="grid-containero">
         {% for order in orders %}
+        {% if order.order_status != "Ready"%}
         <div class="order-card">
             <h3>Name: {{ order.order_placer }}</h3>
             <h2>{{order.order_place}}</h2>
@@ -23,11 +74,12 @@
                 {% endfor %}
             </ul>
             {% if order.order_status == "Received"%}
-            <a href="">Put In oven</a>
+            <button onclick="startTimer(this)" data-id="{{order.id}}">Put In oven</button>
             {% else %}
-            <a href="">Ready</a>
+            <button onclick="putInOven(this)" data-id="{{order.id}}">Ready</button>
             {% endif %}
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </body>
