@@ -1,8 +1,20 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import json
 import datetime
 import time
+import serial
+
+SERIAL_PORT = 'COM5'  # Update with your Arduino's serial port (e.g., COM3 on Windows)
+BAUD_RATE = 9600
+
+# Establish serial connection with Arduino
+try:
+    arduino = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
+    print("Connected to Arduino.")
+except serial.SerialException:
+    print(f"Could not open serial port {SERIAL_PORT}")
+    arduino = None
 
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -71,6 +83,46 @@ def menu_filter(type):
     else:
         filtered_items = MenuItem.query.filter_by(ItemType = type).all()
         return render_template('menu.html', items = filtered_items, user=user)
+    
+@app.route('/start-timer', methods=['POST'])
+def start_timer():
+    data = request.get_json()
+    order_id = data.get("order_id")
+    if arduino:
+        try:
+            arduino.write(b'START_TIMER\n')  # Send command to Arduino
+            print(order_id)
+            order = Orders.query.get(order_id)
+            if order:
+                order.order_status = "Preparing"
+                db.session.commit()  # Commit changes to the database
+                return jsonify({"status": "success", "message": "Timer started on Arduino."}), 200
+            else:
+                return jsonify({'success': False, 'message': 'Order not found'})
+        except Exception as e:
+            print(f"Error sending data to Arduino: {e}")
+            return jsonify({"status": "error", "message": "Failed to start timer."}), 500
+    else:
+        return jsonify({"status": "error", "message": "Arduino not connected."}), 500
+
+@app.route('/ready_order', methods = ['POST'])
+def ready_order():
+    data = request.get_json()
+    order_id = data.get("order_id")
+    order = Orders.query.get(order_id)
+    if order:
+        order.order_status = "Ready"
+        db.session.commit()  # Commit changes to the database
+        return jsonify({"status": "success", "message": "Order marked as Ready."}), 200
+    
+@app.route('/check_status')
+def check_status():
+    if arduino and arduino.in_waiting > 0:  # Check if there's data in the serial buffer
+        line = arduino.readline().decode('utf-8').strip()  # Read the line
+        if line == "DONE":
+            return "DONE"  # Send back the "DONE" status
+    return "WAIT"  # Return a waiting status if nothing is done yet
+
 
 @app.route('/addtocart', methods = ['POST'])
 def addtocart():
@@ -125,7 +177,7 @@ def addtocart():
 @app.route('/cart')
 def view_cart():
     cart = session.get('cart', [])
-    total_price = sum(item['pizza_price'] for item in session.get('cart', []))
+    total_price = sum(item['pizza_price'] * item['quantity'] for item in session.get('cart', []))
 
 
     return render_template('cart.html', cart = cart, total_price = total_price)
