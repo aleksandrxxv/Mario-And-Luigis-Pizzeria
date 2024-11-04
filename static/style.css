@@ -26,25 +26,29 @@
 
 }
 .order-card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     border: 1px solid #dddfdd;
-    padding: 15px;
+    padding: 25px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0, 0.1);
 }
-
-.menu-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
+.order-card a {
+    padding: 10px 15px;
+    text-decoration: none;
+    background-color: #2fa437;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
     text-align: center;
-    transition: transform 0.3s;
-    padding: 10px;
-    height: 100%; 
+    transition: background-color 0.3s ease;
 }
+.order-card a:hover {
+    background-color: #1a7120
+} 
+
+
 
 .menu-item-button {
     display: block;
@@ -268,6 +272,7 @@ body {
     height: 87%;
 }
 
+
 .product-container {
     display: flex;
     justify-content: space-between;
@@ -285,15 +290,14 @@ body {
     text-align: center;
 }
 
-/* Keyframes for a slower, more pronounced fade-in and slide-up effect */
 @keyframes fadeInUp {
     0% {
       opacity: 0;
-      transform: translateY(40px); /* Start further down for more visibility */
+      transform: translateY(40px);
     }
     100% {
       opacity: 1;
-      transform: translateY(0); /* End at original position */
+      transform: translateY(0);
     }
   }
   
@@ -306,18 +310,16 @@ body {
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
-    transition: transform 0.3s;
     padding: 10px;
     height: 100%; 
-    opacity: 0; /* Start items as invisible */
-    animation: fadeInUp 0.3s ease forwards; /* Increased duration for slower animation */
+    opacity: 0;
+    animation: fadeInUp 0.3s ease forwards;
 }
 
 .menu-item:hover {
     transform: scale(1.05);
 }
 
-  /* Flexbox styling for filter bar */
 .items-selector {
     display: flex;
     flex-direction: row;
@@ -331,11 +333,40 @@ body {
   .filter-button {
     padding: 10px 15px;
     text-decoration: none;
-    color: white;
-    background-color: #007bff;
+    color: #ff6347;
+    border: solid 2px #ff6347;
     border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
+  .filter-button:hover {
+    background-color: #ff6347;
+    color: white;
+  }
+
+  .header {
+    text-align: center;
+  }
   
+.progress-container {
+width: 100%;        /* Full width */
+background-color: #e0e0e0;  /* Light gray background */
+border-radius: 5px; /* Rounded corners */
+height: 20px;       /* Height of the progress bar */
+overflow: hidden;
+}
+            
+.progress-bar {
+height: 100%;           /* Full height of the container */
+background-color: #4caf50;  /* Green color */
+width: 0%;              /* Initial width (can be dynamically changed) */
+border-radius: 5px 0 0 5px; /* Rounded corner only on the left */
+transition: width 0.3s ease; /* Smooth transition */
+}
+.track-container {
+display: flex;
+flex-direction: column;
+width: 100vh;
+height: 150vh;
+}
