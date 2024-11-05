@@ -117,7 +117,7 @@ input[type="radio"]:checked + label.custom-radio {
 
 .menu-item p {
     font-size: x-small;
-    font-weight: 600;
+    font-weight: 100;
     color: #747474
 }
 
