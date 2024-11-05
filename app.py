@@ -5,10 +5,9 @@ import datetime
 import time
 import serial
 
-SERIAL_PORT = 'COM5'  # Update with your Arduino's serial port (e.g., COM3 on Windows)
+SERIAL_PORT = 'COM5'
 BAUD_RATE = 9600
 
-# Establish serial connection with Arduino
 try:
     arduino = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
     print("Connected to Arduino.")
@@ -66,7 +65,7 @@ def dev():
 @app.route('/')
 def index():
     user = session.get('user')
-    # session.pop('user', None)
+
     return render_template('index.html', user=user)
 
 @app.route('/check-value', methods=['GET'])
@@ -97,12 +96,12 @@ def start_timer():
     order_id = data.get("order_id")
     if arduino:
         try:
-            arduino.write(b'START_TIMER\n')  # Send command to Arduino
+            arduino.write(b'START_TIMER\n')
             print(order_id)
             order = Orders.query.get(order_id)
             if order:
                 order.order_status = "Preparing"
-                db.session.commit()  # Commit changes to the database
+                db.session.commit()
                 return jsonify({"status": "success", "message": "Timer started on Arduino."}), 200
             else:
                 return jsonify({'success': False, 'message': 'Order not found'})
@@ -119,16 +118,16 @@ def ready_order():
     order = Orders.query.get(order_id)
     if order:
         order.order_status = "Ready"
-        db.session.commit()  # Commit changes to the database
+        db.session.commit()
         return jsonify({"status": "success", "message": "Order marked as Ready."}), 200
     
 @app.route('/check_status')
 def check_status():
-    if arduino and arduino.in_waiting > 0:  # Check if there's data in the serial buffer
-        line = arduino.readline().decode('utf-8').strip()  # Read the line
+    if arduino and arduino.in_waiting > 0:
+        line = arduino.readline().decode('utf-8').strip()
         if line == "DONE":
-            return "DONE"  # Send back the "DONE" status
-    return "WAIT"  # Return a waiting status if nothing is done yet
+            return "DONE"
+    return "WAIT"
 
 
 @app.route('/addtocart', methods = ['POST'])
@@ -223,7 +222,7 @@ def checkout():
 def view_orders():
     orders = Orders.query.all()
     latest_entry = db.session.query(Orders).order_by(Orders.id.desc()).first()
-    last_id = latest_entry.id if latest_entry else 0  # Store the highest current ID
+    last_id = latest_entry.id if latest_entry else 0
 
     orders_with_cart = []
     for order in orders:
@@ -240,7 +239,6 @@ def view_orders():
 
 @app.route('/check-new-entry', methods=['GET'])
 def check_new_entry():
-    # Get the highest ID in the table (latest entry)
     latest_entry = db.session.query(Orders).order_by(Orders.id.desc()).first()
     latest_id = latest_entry.id if latest_entry else 0
     return jsonify({"latest_id": latest_id})
