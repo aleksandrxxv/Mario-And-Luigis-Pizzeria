@@ -117,7 +117,7 @@ input[type="radio"]:checked + label.custom-radio {
 
 .menu-item p {
     font-size: x-small;
-    font-weight: 600;
+    font-weight: 100;
     color: #747474
 }
 
@@ -130,10 +130,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #C6BEB2;
+    background-color: #bd4530;
     overflow: hidden;
     padding: 15px 20px;
     letter-spacing: 2px;
+}
+.ready-orders {
+    display: block;
+    justify-content: space-between;
+}
+.ready-order {
+    background-color: #0dfd1d;
 }
 
 .navbar-brand {
@@ -185,7 +192,7 @@ body {
 }
 
 .hover-image:hover {
-    filter: brightness(0) saturate(100%) invert(28%) sepia(98%) saturate(535%) hue-rotate(6deg) brightness(100%) contrast(100%); 
+    filter: brightness(0) saturate(100%) invert(48%) sepia(93%) saturate(494%) hue-rotate(2deg) brightness(98%) contrast(98%);
 }
 
 
@@ -228,9 +235,9 @@ body {
     color: white;
     margin-top: 20px;
     text-decoration: none;
-    background-color: #C6BEB2;
+    background-color: #bd4530;
     border-radius: 5px;
-    box-shadow: 0 0 20px rgba(198, 190, 178, 0.5);
+    box-shadow: 0 0 20px rgb(255, 255, 255);
     transition: background-color 0.3s ease, transform 0.3s ease;
     animation: shine 2s infinite;
     align-self: center;
@@ -239,22 +246,22 @@ body {
 
 @keyframes shine {
     0% {
-        box-shadow: 0 0 20px rgba(198, 190, 178, 0.5);
+        box-shadow: 0 0 20px #ff6347;
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 40px rgba(198, 190, 178, 0.8);
+        box-shadow: 0 0 40px #ff8570;
         transform: scale(1.05);
     }
     100% {
-        box-shadow: 0 0 20px rgba(198, 190, 178, 0.5);
+        box-shadow: 0 0 20px #ff6347;
         transform: scale(1);
     }
 }
 
 .order-button:hover {
-    background-color: #B0A49C;
-    box-shadow: 0 0 40px rgba(176, 164, 156, 0.8);
+    background-color: #e75339;
+    box-shadow: 0 0 40px #ff8570;
     color: #f7f7f7;
 }
 

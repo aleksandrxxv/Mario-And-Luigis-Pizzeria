@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}Ready Orders{% endblock %}
+{% block content %}
+<div class="ready-orders">
+    {% for order in ready_orders %}
+    <div class="ready-order">
+        <h1>Ready order: </h1>
+        <h1>{{order.order_placer}}</h1>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
