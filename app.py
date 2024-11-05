@@ -257,6 +257,8 @@ def track_order():
     user_order = Orders.query.filter_by(order_placer = user)
     orders_with_cart = []
     for order in user_order:
+        if order.order_status == "Ready":
+            session.pop('user', None)
         order_cart = json.loads(order.order_contents)
         orders_with_cart.append({
             'id': order.id,
