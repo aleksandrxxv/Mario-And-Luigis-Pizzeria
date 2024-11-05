@@ -25,6 +25,9 @@
     display: flex;
     align-items: center;
 }
+.navbar-brand:hover {
+    color: #ff6347;
+}
 
 .navbar-brand img {
     height: 60px;

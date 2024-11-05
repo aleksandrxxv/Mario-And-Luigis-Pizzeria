@@ -20,6 +20,7 @@ db = SQLAlchemy()
 app = Flask(__name__)
 app.secret_key = "Secret key"
 
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres.dpznsagmfkgblxagagdm:YR*QgPD9n.k#u9x@aws-0-eu-north-1.pooler.supabase.com:6543/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -67,6 +68,12 @@ def index():
     user = session.get('user')
     # session.pop('user', None)
     return render_template('index.html', user=user)
+
+@app.route('/check-value', methods=['GET'])
+def check_value():
+    record = db.session.query(Orders).first() 
+    current_value = record.order_status if record else None
+    return jsonify({"value": current_value})
 
 @app.route('/menu')
 def menu():
@@ -158,12 +165,14 @@ def addtocart():
         pizza_size = "None"
         pizza_price = pizza.PizzaPrice
         pizza_name = pizza.PizzaName
+        pizza_image = pizza.PizzaImage
         quantity = int(request.form.get('quantity'))
 
         item = {
             'pizza_name' : pizza_name,
             'pizza_size' : pizza_size,
             'pizza_price' : pizza_price,
+            'pizza_image': pizza_image,
             'topping' : topping,
             'quantity' : quantity
         }
@@ -213,6 +222,8 @@ def checkout():
 @app.route('/view_orders')
 def view_orders():
     orders = Orders.query.all()
+    latest_entry = db.session.query(Orders).order_by(Orders.id.desc()).first()
+    last_id = latest_entry.id if latest_entry else 0  # Store the highest current ID
 
     orders_with_cart = []
     for order in orders:
@@ -225,7 +236,14 @@ def view_orders():
             'order_status': order.order_status,
             'order_placer': order.order_placer  
         })
-    return render_template('orders.html', orders=orders_with_cart)
+    return render_template('orders.html', orders=orders_with_cart, last_id=last_id)
+
+@app.route('/check-new-entry', methods=['GET'])
+def check_new_entry():
+    # Get the highest ID in the table (latest entry)
+    latest_entry = db.session.query(Orders).order_by(Orders.id.desc()).first()
+    latest_id = latest_entry.id if latest_entry else 0
+    return jsonify({"latest_id": latest_id})
 
 @app.route('/track_order')
 def track_order():

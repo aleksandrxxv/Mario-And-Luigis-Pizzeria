@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Orders</title>
     <script>
         function startTimer(button) {
@@ -54,6 +55,28 @@
                 .catch(error => console.error('Error:', error));
             }, 1000);  // Poll every second
         }
+
+        let lastId = {{ last_id }};
+
+      function checkNewEntry() {
+        $.ajax({
+          url: "/check-new-entry",
+          method: "GET",
+          success: function(response) {
+            const latestId = response.latest_id;
+            // Check if a new entry has been added
+            if (latestId > lastId) {
+              location.reload();  // Refresh the page when a new entry is detected
+            }
+          },
+          error: function(error) {
+            console.error("Error fetching new entry:", error);
+          }
+        });
+      }
+
+      // Set an interval to check for a new entry every 5 seconds
+      setInterval(checkNewEntry, 5000);
     </script>
 </head>
 <body>
