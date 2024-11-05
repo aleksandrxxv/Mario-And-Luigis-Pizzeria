@@ -86,28 +86,25 @@ input[type="radio"] {
     display: none;
 }
 
-/* Style the label to look like a button */
 label.custom-radio {
     display: inline-block;
     padding: 10px 20px;
-    border: 2px solid #ff6347; /* Default border color */
+    border: 2px solid #ff6347;
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
     transition: background-color 0.2s, border-color 0.2s;
-    color: #ff6347; /* Default text color */
+    color: #ff6347;
 }
 
-/* Change background and text color on hover */
 label.custom-radio:hover {
-    background-color: #e7f1ff; /* Light blue on hover */
+    background-color: #e7f1ff;
 }
 
-/* Change styles when the radio button is checked */
 input[type="radio"]:checked + label.custom-radio {
-    background-color: #ff6347; /* Selected background color */
-    color: white; /* Text color when selected */
-    border-color: #ff6347; /* Darker border when selected */
+    background-color: #ff6347;
+    color: white;
+    border-color: #ff6347;
 }
 
 
@@ -351,19 +348,19 @@ body {
   }
   
 .progress-container {
-width: 100%;        /* Full width */
-background-color: #e0e0e0;  /* Light gray background */
-border-radius: 5px; /* Rounded corners */
-height: 20px;       /* Height of the progress bar */
+width: 100%;
+background-color: #e0e0e0;
+border-radius: 5px;
+height: 20px;
 overflow: hidden;
 }
             
 .progress-bar {
-height: 100%;           /* Full height of the container */
-background-color: #4caf50;  /* Green color */
-width: 0%;              /* Initial width (can be dynamically changed) */
-border-radius: 5px 0 0 5px; /* Rounded corner only on the left */
-transition: width 0.3s ease; /* Smooth transition */
+height: 100%;
+background-color: #4caf50;
+width: 0%;
+border-radius: 5px 0 0 5px;
+transition: width 0.3s ease;
 }
 .track-container {
 display: flex;
