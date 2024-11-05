@@ -9,14 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Holtwood+One+SC&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 
     <nav class="navbar1">
-        <a href="{{ url_for('index') }}" class="navbar-brand">
-            <img src="https://dpznsagmfkgblxagagdm.supabase.co/storage/v1/object/sign/Website%20style/mario%20and%20luigi%20logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJXZWJzaXRlIHN0eWxlL21hcmlvIGFuZCBsdWlnaSBsb2dvLnBuZyIsImlhdCI6MTczMDQ1NzM3NiwiZXhwIjoxNzYxOTkzMzc2fQ.Foc0D9l8wuS92aeGJT_Bu_ywabukpKFcW2G5z0Xxh-0&t=2024-11-01T10%3A36%3A16.803Z" alt="">
-            Mario And Luigi's Pizzeria
-        </a>
+        <a href="{{ url_for('index') }}" class="navbar-brand"><img src="https://dpznsagmfkgblxagagdm.supabase.co/storage/v1/object/sign/Website%20style/mario%20and%20luigi%20logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJXZWJzaXRlIHN0eWxlL21hcmlvIGFuZCBsdWlnaSBsb2dvLnBuZyIsImlhdCI6MTczMDQ1NzM3NiwiZXhwIjoxNzYxOTkzMzc2fQ.Foc0D9l8wuS92aeGJT_Bu_ywabukpKFcW2G5z0Xxh-0&t=2024-11-01T10%3A36%3A16.803Z" alt="">Mario And Luigi's Pizzeria</a>
         <ul class="navbar-navi">
             {% if user %}
             <li><a href="{{ url_for('track_order') }}">Track your order</a></li>
@@ -63,5 +62,30 @@
             {% endif%}     
         {% endfor %}
     </div>
+    <script>
+        let lastValue = null;
+  
+        // Function to check the current value from the server
+        function checkValue() {
+          $.ajax({
+            url: "/check-value",
+            method: "GET",
+            success: function(response) {
+              // Check if the value has changed
+              if (lastValue !== null && response.value !== lastValue) {
+                location.reload();  // Refresh the page when value changes
+              }
+              // Update lastValue to the current value for future comparison
+              lastValue = response.value;
+            },
+            error: function(error) {
+              console.error("Error fetching value:", error);
+            }
+          });
+        }
+  
+        // Set an interval to check the value every 5 seconds
+        setInterval(checkValue, 5000);
+      </script>
 </body>
 </html>
