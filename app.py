@@ -81,6 +81,13 @@ def menu():
     user = session.get('user')
     return render_template('menu.html', items = all_items, user = user)
 
+@app.route('/ready_orders')
+def ready_orders():
+    ready_orders = Orders.query.filter_by(order_status = "Ready").all()
+
+    return render_template('ready_orders.html', ready_orders=ready_orders)
+
+
 @app.route('/menu/<type>')
 def menu_filter(type):
     user = session.get('user')

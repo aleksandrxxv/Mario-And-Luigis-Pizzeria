@@ -130,10 +130,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #C6BEB2;
+    background-color: #bd4530;
     overflow: hidden;
     padding: 15px 20px;
     letter-spacing: 2px;
+}
+.ready-orders {
+    display: block;
+    justify-content: space-between;
+}
+.ready-order {
+    background-color: #0dfd1d;
 }
 
 .navbar-brand {
